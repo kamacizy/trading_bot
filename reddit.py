@@ -1,8 +1,8 @@
 import praw
 import csv
 
-f = open('count.txt', 'w', encoding='utf-8')
-c = csv.reader(open('nasdaq.csv'))
+f = open('count.csv', 'w', encoding='utf-8')
+c = csv.reader(open('nasdaq_w$.csv'))
 
 rows = []
 for row in c:
@@ -28,7 +28,7 @@ def CROSS_CHECK():
         for submission in reddit.subreddit(chosen_subreddit).hot(limit=sample_size):
             x = str(submission.title).upper().split()
             for y in range(len(x)):
-                if len(x[y]) >= 3 or len(x[y]) <= 6:
+                if len(x[y]) in range(3,6):
                     for z in range(len(rows)):
                         #turns rows into a str and compares
                         if ''.join(rows[z]).upper() == x[y].upper():
@@ -41,7 +41,7 @@ def CROSS_CHECK():
         for submission in reddit.subreddit(chosen_subreddit).relevance(limit=sample_size):
             x = str(submission.title).upper().split()
             for y in range(len(x)):
-                if len(x[y]) >= 3 or len(x[y]) <= 6:
+                if len(x[y]) in range(3,6):
                     for z in range(len(rows)):
                         #turns rows into a str and compares
                         if ''.join(rows[z]).upper() == x[y].upper():
@@ -54,11 +54,12 @@ def CROSS_CHECK():
         for submission in reddit.subreddit(chosen_subreddit).new(limit=sample_size):
             x = str(submission.title).upper().split()
             for y in range(len(x)):
-                if len(x[y]) >= 3 or len(x[y]) <= 6:
+                if len(x[y]) in range(3,6):
                     for z in range(len(rows)):
                         #turns rows into a str and compares
                         if ''.join(rows[z]).upper() == x[y].upper():
-                            print(rows[z])
+                            f. write(''.join(rows[z]).upper())
+                            f. write('\n')
                         else:
                             pass
                 else:
@@ -67,7 +68,7 @@ def CROSS_CHECK():
         for submission in reddit.subreddit(chosen_subreddit).rising(limit=sample_size):
             x = str(submission.title).upper().split()
             for y in range(len(x)):
-                if len(x[y]) >= 3 or len(x[y]) <= 6:
+                if len(x[y]) in range(3,6):
                     for z in range(len(rows)):
                         #turns rows into a str and compares
                         if ''.join(rows[z]).upper() == x[y].upper():
