@@ -5,4 +5,5 @@ c = csv.reader(open('nasdaq.csv'))
 rows = []
 for row in c:
     rows.append(row)
-print(range(len((rows))))
+listToStr = ' '.join([str(elem) for elem in rows])
+print(listToStr[0])
