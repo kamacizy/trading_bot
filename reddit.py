@@ -32,7 +32,8 @@ def CROSS_CHECK():
                     for z in range(len(rows)):
                         #turns rows into a str and compares
                         if ''.join(rows[z]).upper() == x[y].upper():
-                            print(rows[z])
+                            f. write(''.join(rows[z]).upper())
+                            f. write('\n')
                         else:
                             pass
                 else:
@@ -45,7 +46,8 @@ def CROSS_CHECK():
                     for z in range(len(rows)):
                         #turns rows into a str and compares
                         if ''.join(rows[z]).upper() == x[y].upper():
-                            print(rows[z])
+                            f. write(''.join(rows[z]).upper())
+                            f. write('\n')
                         else:
                             pass
                 else:
@@ -72,7 +74,8 @@ def CROSS_CHECK():
                     for z in range(len(rows)):
                         #turns rows into a str and compares
                         if ''.join(rows[z]).upper() == x[y].upper():
-                            print(rows[z])
+                            f. write(''.join(rows[z]).upper())
+                            f. write('\n')
                         else:
                             pass
                 else:
