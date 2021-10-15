@@ -26,9 +26,11 @@ def CRYPTOHIST(sym):
     x=ro.get_crypto_historicals(symbol=sym, interval='hour', span='week', bounds='24_7', info=None)
     print("Crypto historicals of: \n", x)
 
-def TRADE(sym):
-    ro.order_buy_market(sym, 10)
-    
+def BUY(sym, amount):
+    ro.order_buy_market(sym, amount)
+
+def SELL(sym, amount):
+    ro.order_sell_market(sym, amount)
 
 
 

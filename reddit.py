@@ -2,7 +2,7 @@ import praw
 import csv
 
 f = open('count.csv', 'w', encoding='utf-8')
-c = csv.reader(open('nasdaq_w$.csv'))
+c = csv.reader(open('nasdaq.csv'))
 
 rows = []
 for row in c:
