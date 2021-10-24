@@ -2,11 +2,13 @@ import praw
 import csv
 
 f = open('count.csv', 'w', encoding='utf-8')
-c = csv.reader(open('nasdaq.csv'))
+nasdaq_list = csv.reader(open('nasdaq.csv'))
 
 rows = []
-for row in c:
+for row in nasdaq_list:
     rows.append(row)
+
+
 
 lines = open('secret.txt').read().splitlines()
 
@@ -19,7 +21,9 @@ reddit = praw.Reddit(
     )
 
 def CROSS_CHECK():
-        
+    
+    list_of_symbols = []
+
     chosen_subreddit=input('What subreddit are you cross-checking?\n').upper()
     chosen_sort=input('What sort are you cross-checking with?\n[HOT, RELEVANCE, NEW, RISING, COMMENTS]\n').upper()
     sample_size=int(input('What sample size would you like?\n'))
@@ -54,12 +58,14 @@ def CROSS_CHECK():
                     pass
     elif chosen_sort=='NEW':
         for submission in reddit.subreddit(chosen_subreddit).new(limit=sample_size):
-            x = str(submission.title).upper().split()
-            for y in range(len(x)):
-                if len(x[y]) in range(3,6):
+            words_in_article_title = str(submission.title).upper().split()
+            for y in range(len(words_in_article_title)):
+                if len(words_in_article_title[y]) in range(3,6):
                     for z in range(len(rows)):
                         #turns rows into a str and compares
-                        if ''.join(rows[z]).upper() == x[y].upper():
+                        if ''.join(rows[z]).upper() == words_in_article_title[y].upper():
+                            #s = list_of_symbols.append(rows[z])
+                            #print(type(s))
                             f. write(''.join(rows[z]).upper())
                             f. write('\n')
                         else:
@@ -94,4 +100,3 @@ def CROSS_CHECK():
                                 pass
                     else:
                         pass
-

@@ -1,6 +1,7 @@
 import tweepy
 import pandas as pd
 import csv
+import re
 
 lines = open('secret.txt').read().splitlines()
 
@@ -14,6 +15,13 @@ c = csv.reader(open('nasdaq.csv'))
 rows = []
 for row in c:
     rows.append(row)
+
+frequency = {}
+document_text = csv.reader(open('count.csv'))
+#convert the string of the document in lowercase and assign it to text_string variable.
+#text = document_text.read().lower()
+pattern = re.findall(r'\b[a-z]{2,15}\b', document_text)
+
 
 # Enter Hashtag, initial date, and  number of tweets you want to extract in one run
 #words = input("Enter Twitter HashTag to search for \n")
@@ -29,24 +37,17 @@ for row in c:
 #we can use number to increase the number of recent tweets, but for now I'm leaving it at the 
 #default of 100
 def search():
-    for X in range(len(rows)):
-        x = api.search_tweets(q=rows[X])
-        print(x)
+    for word in pattern:
+        count = frequency.get(word,0)
+        frequency[word] = count + 1
+        frequency_list = frequency.keys()
+        for words in frequency_list:
+            print(words, frequency[words])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # figure out how to pull the 'text' information from the json
+    #for X in range(len(rows)):
+        #x = api.search_tweets(q='APPL',count=2)
+        #print(x[0])
 
 def PRINTTWEETDATA(n, ith_tweet):
     print()
@@ -118,7 +119,3 @@ def scrape(words, date_since, numtweet):
 
 def SENTIMENT_SCORE():
     return
-
-
-
-search()
